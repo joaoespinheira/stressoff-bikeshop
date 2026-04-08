@@ -1,0 +1,198 @@
+{
+  "nav": {
+    "store": "Loja",
+    "rentals": "Aluguer",
+    "repairs": "Reparações",
+    "about": "Sobre nós",
+    "contact": "Contacto",
+    "account": "A minha conta",
+    "admin": "Painel Admin",
+    "cart": "Carrinho",
+    "login": "Entrar",
+    "register": "Registar",
+    "logout": "Sair"
+  },
+  "home": {
+    "hero": {
+      "title": "A tua bike, à nossa responsabilidade",
+      "subtitle": "Venda, aluguer e reparação de bicicletas com o atendimento mais técnico e honesto de Lisboa.",
+      "cta_store": "Ver Loja",
+      "cta_repair": "Pedir Reparação"
+    },
+    "services": {
+      "title": "Os nossos serviços",
+      "store": {
+        "title": "Loja",
+        "desc": "Bicicletas e acessórios das melhores marcas, com aconselhamento técnico personalizado."
+      },
+      "rental": {
+        "title": "Aluguer",
+        "desc": "Aluga a tua bicicleta por dia ou semana. Entrega e recolha disponível."
+      },
+      "repair": {
+        "title": "Reparações",
+        "desc": "Mecânicos certificados, diagnóstico honesto e orçamento transparente."
+      }
+    },
+    "chico": {
+      "title": "O Chico está aqui para ti",
+      "desc": "Com mais de 15 anos de experiência, o Chico é o mecânico de referência da Stressoff. Diagnóstico certeiro, preço justo e sem complicações.",
+      "badge": "Mecânico Chefe"
+    },
+    "hours": {
+      "title": "Horários",
+      "weekdays": "Segunda a Sexta",
+      "saturday": "Sábado",
+      "sunday": "Domingo",
+      "closed": "Fechado",
+      "morning": "09:00 – 13:00",
+      "afternoon_weekday": "14:30 – 19:30",
+      "afternoon_saturday": "15:00 – 19:00",
+      "open_now": "Aberto agora",
+      "closed_now": "Fechado agora"
+    },
+    "whatsapp": "Falar no WhatsApp"
+  },
+  "store": {
+    "title": "Loja",
+    "filter_category": "Categoria",
+    "filter_price": "Preço",
+    "filter_brand": "Marca",
+    "sort_relevance": "Relevância",
+    "sort_price_asc": "Preço: mais baixo",
+    "sort_price_desc": "Preço: mais alto",
+    "sort_newest": "Mais recentes",
+    "in_stock": "Em stock",
+    "out_of_stock": "Esgotado",
+    "add_to_cart": "Adicionar ao carrinho",
+    "view_product": "Ver produto",
+    "no_results": "Nenhum produto encontrado.",
+    "featured": "Destaque"
+  },
+  "product": {
+    "description": "Descrição",
+    "reviews": "Avaliações",
+    "related": "Produtos relacionados",
+    "sku": "Referência",
+    "brand": "Marca",
+    "quantity": "Quantidade",
+    "loyalty_points": "Pontos de fidelização"
+  },
+  "cart": {
+    "title": "Carrinho",
+    "empty": "O teu carrinho está vazio.",
+    "subtotal": "Subtotal",
+    "shipping": "Portes",
+    "total": "Total",
+    "checkout": "Finalizar compra",
+    "continue_shopping": "Continuar a comprar",
+    "remove": "Remover",
+    "free_shipping": "Portes grátis"
+  },
+  "checkout": {
+    "title": "Finalizar compra",
+    "contact": "Contacto",
+    "shipping": "Morada de entrega",
+    "payment": "Pagamento",
+    "place_order": "Confirmar encomenda",
+    "success_title": "Encomenda confirmada!",
+    "success_desc": "Receberás um email de confirmação em breve."
+  },
+  "rentals": {
+    "title": "Aluguer de Bicicletas",
+    "subtitle": "Descobre a cidade em duas rodas. Preços por dia ou semana.",
+    "per_day": "/dia",
+    "per_week": "/semana",
+    "deposit": "Depósito",
+    "book_now": "Reservar",
+    "available": "Disponível",
+    "unavailable": "Indisponível",
+    "select_dates": "Seleciona as datas",
+    "start_date": "Data de início",
+    "end_date": "Data de devolução",
+    "total_days": "Dias totais",
+    "my_rentals": "Os meus alugueres"
+  },
+  "repairs": {
+    "title": "Reparações",
+    "subtitle": "A tua bicicleta em boas mãos. Mecânicos certificados, diagnóstico honesto.",
+    "request_repair": "Pedir reparação",
+    "bike_description": "Descreve a tua bicicleta",
+    "problem_description": "Descreve o problema",
+    "upload_photos": "Adiciona fotos (opcional)",
+    "submit": "Enviar pedido",
+    "track": "Seguir reparação",
+    "status_submitted": "Pedido recebido",
+    "status_waiting_parts": "A aguardar peças",
+    "status_in_progress": "Em reparação",
+    "status_ready": "Pronta para levantamento",
+    "status_completed": "Concluída",
+    "status_cancelled": "Cancelada",
+    "estimated_cost": "Orçamento estimado",
+    "final_cost": "Custo final",
+    "assigned_to": "Mecânico responsável",
+    "my_repairs": "As minhas reparações"
+  },
+  "auth": {
+    "login_title": "Entrar na conta",
+    "register_title": "Criar conta",
+    "email": "Email",
+    "password": "Password",
+    "name": "Nome",
+    "phone": "Telemóvel",
+    "submit_login": "Entrar",
+    "submit_register": "Criar conta",
+    "no_account": "Ainda não tens conta?",
+    "has_account": "Já tens conta?",
+    "forgot_password": "Esqueceste a password?",
+    "or": "ou",
+    "login_with_google": "Entrar com Google"
+  },
+  "account": {
+    "title": "A minha conta",
+    "orders": "Encomendas",
+    "rentals": "Alugueres",
+    "repairs": "Reparações",
+    "profile": "Perfil",
+    "loyalty": "Pontos de fidelização",
+    "points": "pontos",
+    "tier_bronze": "Bronze",
+    "tier_silver": "Prata",
+    "tier_gold": "Ouro",
+    "tier_platinum": "Platina"
+  },
+  "admin": {
+    "title": "Painel de Administração",
+    "products": "Produtos",
+    "categories": "Categorias",
+    "orders": "Encomendas",
+    "rentals": "Alugueres",
+    "repairs": "Reparações",
+    "users": "Utilizadores",
+    "analytics": "Análise",
+    "new_product": "Novo produto",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "save": "Guardar",
+    "cancel": "Cancelar"
+  },
+  "common": {
+    "loading": "A carregar...",
+    "error": "Ocorreu um erro",
+    "try_again": "Tentar novamente",
+    "back": "Voltar",
+    "see_all": "Ver tudo",
+    "price": "Preço",
+    "stock": "Stock",
+    "status": "Estado",
+    "date": "Data",
+    "actions": "Ações",
+    "confirm": "Confirmar",
+    "name": "Nome",
+    "email": "Email",
+    "phone": "Telemóvel",
+    "address": "Morada",
+    "city": "Cidade",
+    "postal_code": "Código postal"
+  }
+}

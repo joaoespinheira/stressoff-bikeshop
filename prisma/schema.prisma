@@ -1,0 +1,352 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── ENUMS ───────────────────────────────────────────────────────────────────
+
+enum UserRole {
+  CUSTOMER
+  MECHANIC
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING_PAYMENT
+  PAID
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+enum RepairStatus {
+  SUBMITTED
+  WAITING_PARTS
+  IN_PROGRESS
+  READY_FOR_PICKUP
+  COMPLETED
+  CANCELLED
+}
+
+enum RentalStatus {
+  PENDING_PAYMENT
+  CONFIRMED
+  ACTIVE
+  RETURNED
+  CANCELLED
+  LATE
+}
+
+enum LoyaltyTransactionType {
+  EARNED_ORDER
+  EARNED_REFERRAL
+  REDEEMED
+  BONUS
+  EXPIRED
+  ADJUSTMENT
+}
+
+// ─── USER ────────────────────────────────────────────────────────────────────
+
+model User {
+  id              String   @id @default(cuid())
+  email           String   @unique
+  name            String?
+  phone           String?
+  passwordHash    String?
+  image           String?
+  role            UserRole @default(CUSTOMER)
+  preferredLocale String   @default("pt")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  orders          Order[]
+  rentals         Rental[]
+  repairs         Repair[]
+  loyaltyAccount  LoyaltyAccount?
+  assignedRepairs Repair[]        @relation("AssignedMechanic")
+  addresses       Address[]
+  reviews         Review[]
+
+  @@map("users")
+}
+
+model Address {
+  id         String  @id @default(cuid())
+  userId     String
+  label      String  @default("Casa")
+  street     String
+  city       String
+  postalCode String
+  country    String  @default("PT")
+  isDefault  Boolean @default(false)
+
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orders Order[]
+
+  @@map("addresses")
+}
+
+// ─── CATALOG ─────────────────────────────────────────────────────────────────
+
+model Category {
+  id            String    @id @default(cuid())
+  slug          String    @unique
+  nameEn        String
+  namePt        String
+  descriptionPt String?   @db.Text
+  descriptionEn String?   @db.Text
+  imageUrl      String?
+  parentId      String?
+  sortOrder     Int       @default(0)
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+
+  parent   Category?  @relation("CategoryTree", fields: [parentId], references: [id])
+  children Category[] @relation("CategoryTree")
+  products Product[]
+
+  @@map("categories")
+}
+
+model Product {
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  sku            String   @unique
+  nameEn         String
+  namePt         String
+  descriptionPt  String?  @db.Text
+  descriptionEn  String?  @db.Text
+  price          Decimal  @db.Decimal(10, 2)
+  compareAtPrice Decimal? @db.Decimal(10, 2)
+  stock          Int      @default(0)
+  lowStockAlert  Int      @default(5)
+  categoryId     String
+  brand          String?
+  isFeatured     Boolean  @default(false)
+  isActive       Boolean  @default(true)
+  isRentable     Boolean  @default(false)
+  loyaltyPoints  Int      @default(0)
+  tags           String[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  category   Category       @relation(fields: [categoryId], references: [id])
+  images     ProductImage[]
+  orderItems OrderItem[]
+  reviews    Review[]
+  rentalItem RentalItem?
+
+  @@index([categoryId])
+  @@index([isActive, isFeatured])
+  @@map("products")
+}
+
+model ProductImage {
+  id           String  @id @default(cuid())
+  productId    String
+  cloudinaryId String
+  url          String
+  altPt        String?
+  altEn        String?
+  sortOrder    Int     @default(0)
+  isMain       Boolean @default(false)
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("product_images")
+}
+
+model Review {
+  id         String   @id @default(cuid())
+  productId  String
+  userId     String
+  rating     Int
+  bodyPt     String?  @db.Text
+  bodyEn     String?  @db.Text
+  isVerified Boolean  @default(false)
+  isApproved Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, userId])
+  @@map("reviews")
+}
+
+// ─── ORDERS ──────────────────────────────────────────────────────────────────
+
+model Order {
+  id                    String      @id @default(cuid())
+  orderNumber           String      @unique
+  userId                String?
+  guestEmail            String?
+  addressId             String?
+  status                OrderStatus @default(PENDING_PAYMENT)
+  subtotal              Decimal     @db.Decimal(10, 2)
+  shippingCost          Decimal     @db.Decimal(10, 2) @default(0)
+  discountAmount        Decimal     @db.Decimal(10, 2) @default(0)
+  total                 Decimal     @db.Decimal(10, 2)
+  stripePaymentIntentId String?     @unique
+  stripeSessionId       String?
+  notes                 String?     @db.Text
+  trackingNumber        String?
+  paidAt                DateTime?
+  shippedAt             DateTime?
+  deliveredAt           DateTime?
+  createdAt             DateTime    @default(now())
+  updatedAt             DateTime    @updatedAt
+
+  user    User?       @relation(fields: [userId], references: [id])
+  address Address?    @relation(fields: [addressId], references: [id])
+  items   OrderItem[]
+
+  @@index([userId])
+  @@index([status])
+  @@map("orders")
+}
+
+model OrderItem {
+  id            String  @id @default(cuid())
+  orderId       String
+  productId     String
+  productName   String
+  productSku    String
+  quantity      Int
+  unitPrice     Decimal @db.Decimal(10, 2)
+  totalPrice    Decimal @db.Decimal(10, 2)
+  loyaltyEarned Int     @default(0)
+
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+
+  @@map("order_items")
+}
+
+// ─── RENTALS ─────────────────────────────────────────────────────────────────
+
+model RentalItem {
+  id             String   @id @default(cuid())
+  productId      String   @unique
+  pricePerDay    Decimal  @db.Decimal(10, 2)
+  pricePerWeek   Decimal? @db.Decimal(10, 2)
+  deposit        Decimal  @db.Decimal(10, 2) @default(0)
+  maxDays        Int      @default(30)
+  availableUnits Int      @default(1)
+  descriptionPt  String?  @db.Text
+  descriptionEn  String?  @db.Text
+  isActive       Boolean  @default(true)
+
+  product Product  @relation(fields: [productId], references: [id])
+  rentals Rental[]
+
+  @@map("rental_items")
+}
+
+model Rental {
+  id                    String       @id @default(cuid())
+  rentalNumber          String       @unique
+  userId                String
+  rentalItemId          String
+  status                RentalStatus @default(PENDING_PAYMENT)
+  startDate             DateTime
+  endDate               DateTime
+  dailyRate             Decimal      @db.Decimal(10, 2)
+  totalDays             Int
+  subtotal              Decimal      @db.Decimal(10, 2)
+  depositAmount         Decimal      @db.Decimal(10, 2)
+  total                 Decimal      @db.Decimal(10, 2)
+  stripePaymentIntentId String?      @unique
+  depositRefunded       Boolean      @default(false)
+  actualReturnDate      DateTime?
+  notes                 String?      @db.Text
+  createdAt             DateTime     @default(now())
+  updatedAt             DateTime     @updatedAt
+
+  user       User       @relation(fields: [userId], references: [id])
+  rentalItem RentalItem @relation(fields: [rentalItemId], references: [id])
+
+  @@index([userId])
+  @@index([rentalItemId, startDate, endDate])
+  @@map("rentals")
+}
+
+// ─── REPAIRS ─────────────────────────────────────────────────────────────────
+
+model Repair {
+  id              String       @id @default(cuid())
+  repairNumber    String       @unique
+  userId          String
+  assignedToId    String?
+  status          RepairStatus @default(SUBMITTED)
+  bikeDescription String
+  problemDesc     String       @db.Text
+  estimatedCost   Decimal?     @db.Decimal(10, 2)
+  finalCost       Decimal?     @db.Decimal(10, 2)
+  estimatedDays   Int?
+  completedAt     DateTime?
+  internalNotes   String?      @db.Text
+  customerNotes   String?      @db.Text
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  user       User          @relation(fields: [userId], references: [id])
+  assignedTo User?         @relation("AssignedMechanic", fields: [assignedToId], references: [id])
+  photos     RepairPhoto[]
+
+  @@index([userId])
+  @@index([assignedToId, status])
+  @@map("repairs")
+}
+
+model RepairPhoto {
+  id           String   @id @default(cuid())
+  repairId     String
+  cloudinaryId String
+  url          String
+  caption      String?
+  uploadedAt   DateTime @default(now())
+
+  repair Repair @relation(fields: [repairId], references: [id], onDelete: Cascade)
+
+  @@map("repair_photos")
+}
+
+// ─── LOYALTY ─────────────────────────────────────────────────────────────────
+
+model LoyaltyAccount {
+  id             String   @id @default(cuid())
+  userId         String   @unique
+  totalEarned    Int      @default(0)
+  totalRedeemed  Int      @default(0)
+  currentBalance Int      @default(0)
+  tier           String   @default("BRONZE")
+  updatedAt      DateTime @updatedAt
+
+  user         User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions LoyaltyTransaction[]
+
+  @@map("loyalty_accounts")
+}
+
+model LoyaltyTransaction {
+  id               String                 @id @default(cuid())
+  loyaltyAccountId String
+  type             LoyaltyTransactionType
+  points           Int
+  description      String
+  referenceId      String?
+  expiresAt        DateTime?
+  createdAt        DateTime               @default(now())
+
+  loyaltyAccount LoyaltyAccount @relation(fields: [loyaltyAccountId], references: [id], onDelete: Cascade)
+
+  @@index([loyaltyAccountId])
+  @@map("loyalty_transactions")
+}

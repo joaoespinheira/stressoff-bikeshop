@@ -1,0 +1,198 @@
+{
+  "nav": {
+    "store": "Store",
+    "rentals": "Rentals",
+    "repairs": "Repairs",
+    "about": "About",
+    "contact": "Contact",
+    "account": "My Account",
+    "admin": "Admin Panel",
+    "cart": "Cart",
+    "login": "Sign In",
+    "register": "Register",
+    "logout": "Sign Out"
+  },
+  "home": {
+    "hero": {
+      "title": "Your bike, our responsibility",
+      "subtitle": "Bike sales, rentals and repairs with Lisbon's most technical and honest service.",
+      "cta_store": "Visit Store",
+      "cta_repair": "Request Repair"
+    },
+    "services": {
+      "title": "Our services",
+      "store": {
+        "title": "Store",
+        "desc": "Bikes and accessories from the best brands, with personalised technical advice."
+      },
+      "rental": {
+        "title": "Rentals",
+        "desc": "Rent your bike by the day or week. Delivery and pickup available."
+      },
+      "repair": {
+        "title": "Repairs",
+        "desc": "Certified mechanics, honest diagnosis and transparent quotes."
+      }
+    },
+    "chico": {
+      "title": "Chico is here for you",
+      "desc": "With over 15 years of experience, Chico is Stressoff's go-to mechanic. Accurate diagnosis, fair price, no hassle.",
+      "badge": "Head Mechanic"
+    },
+    "hours": {
+      "title": "Opening Hours",
+      "weekdays": "Monday to Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday",
+      "closed": "Closed",
+      "morning": "09:00 – 13:00",
+      "afternoon_weekday": "14:30 – 19:30",
+      "afternoon_saturday": "15:00 – 19:00",
+      "open_now": "Open now",
+      "closed_now": "Closed now"
+    },
+    "whatsapp": "Chat on WhatsApp"
+  },
+  "store": {
+    "title": "Store",
+    "filter_category": "Category",
+    "filter_price": "Price",
+    "filter_brand": "Brand",
+    "sort_relevance": "Relevance",
+    "sort_price_asc": "Price: lowest",
+    "sort_price_desc": "Price: highest",
+    "sort_newest": "Newest",
+    "in_stock": "In stock",
+    "out_of_stock": "Out of stock",
+    "add_to_cart": "Add to cart",
+    "view_product": "View product",
+    "no_results": "No products found.",
+    "featured": "Featured"
+  },
+  "product": {
+    "description": "Description",
+    "reviews": "Reviews",
+    "related": "Related products",
+    "sku": "SKU",
+    "brand": "Brand",
+    "quantity": "Quantity",
+    "loyalty_points": "Loyalty points"
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty.",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "total": "Total",
+    "checkout": "Checkout",
+    "continue_shopping": "Continue shopping",
+    "remove": "Remove",
+    "free_shipping": "Free shipping"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "contact": "Contact",
+    "shipping": "Shipping address",
+    "payment": "Payment",
+    "place_order": "Place order",
+    "success_title": "Order confirmed!",
+    "success_desc": "You'll receive a confirmation email shortly."
+  },
+  "rentals": {
+    "title": "Bike Rentals",
+    "subtitle": "Discover the city on two wheels. Daily or weekly rates.",
+    "per_day": "/day",
+    "per_week": "/week",
+    "deposit": "Deposit",
+    "book_now": "Book now",
+    "available": "Available",
+    "unavailable": "Unavailable",
+    "select_dates": "Select dates",
+    "start_date": "Start date",
+    "end_date": "Return date",
+    "total_days": "Total days",
+    "my_rentals": "My rentals"
+  },
+  "repairs": {
+    "title": "Repairs",
+    "subtitle": "Your bike in good hands. Certified mechanics, honest diagnosis.",
+    "request_repair": "Request repair",
+    "bike_description": "Describe your bike",
+    "problem_description": "Describe the problem",
+    "upload_photos": "Add photos (optional)",
+    "submit": "Submit request",
+    "track": "Track repair",
+    "status_submitted": "Request received",
+    "status_waiting_parts": "Waiting for parts",
+    "status_in_progress": "In progress",
+    "status_ready": "Ready for pickup",
+    "status_completed": "Completed",
+    "status_cancelled": "Cancelled",
+    "estimated_cost": "Estimated cost",
+    "final_cost": "Final cost",
+    "assigned_to": "Assigned mechanic",
+    "my_repairs": "My repairs"
+  },
+  "auth": {
+    "login_title": "Sign in",
+    "register_title": "Create account",
+    "email": "Email",
+    "password": "Password",
+    "name": "Name",
+    "phone": "Phone",
+    "submit_login": "Sign in",
+    "submit_register": "Create account",
+    "no_account": "Don't have an account?",
+    "has_account": "Already have an account?",
+    "forgot_password": "Forgot your password?",
+    "or": "or",
+    "login_with_google": "Sign in with Google"
+  },
+  "account": {
+    "title": "My Account",
+    "orders": "Orders",
+    "rentals": "Rentals",
+    "repairs": "Repairs",
+    "profile": "Profile",
+    "loyalty": "Loyalty points",
+    "points": "points",
+    "tier_bronze": "Bronze",
+    "tier_silver": "Silver",
+    "tier_gold": "Gold",
+    "tier_platinum": "Platinum"
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "products": "Products",
+    "categories": "Categories",
+    "orders": "Orders",
+    "rentals": "Rentals",
+    "repairs": "Repairs",
+    "users": "Users",
+    "analytics": "Analytics",
+    "new_product": "New product",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "try_again": "Try again",
+    "back": "Back",
+    "see_all": "See all",
+    "price": "Price",
+    "stock": "Stock",
+    "status": "Status",
+    "date": "Date",
+    "actions": "Actions",
+    "confirm": "Confirm",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "city": "City",
+    "postal_code": "Postal code"
+  }
+}
