@@ -110,6 +110,7 @@ export async function POST(request: NextRequest) {
         product_data: {
           name: locale === 'pt' ? 'Depósito (reembolsável)' : 'Deposit (refundable)',
           description: locale === 'pt' ? 'Devolvido após devolução da bicicleta' : 'Refunded after bike return',
+          images: [],
         },
         unit_amount: Math.round(depositAmount * 100),
       },
